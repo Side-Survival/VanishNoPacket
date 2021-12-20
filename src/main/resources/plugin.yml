@@ -2,7 +2,8 @@ name: VanishNoPacket
 main: org.kitteh.vanish.VanishPlugin
 version: '${vnp-version}'
 website: https://kitteh.org
-softdepend: [Essentials,dynmap,PlaceholderAPI,Vault]
+softdepend: [Vault]
+depend: [SurvivalStaff]
 author: mbaxter
 description: Vanish for the distinguished admin
 dev-url: https://dev.bukkit.org/projects/vanish
@@ -66,9 +67,6 @@ permissions:
     children:
       vanish.preventoutgoingdamage: true
       vanish.preventincomingdamage: true
-  vanish.joinwithoutannounce:
-    default: false
-    description: Join without announcing it
   vanish.joinvanished:
     default: false
     description: Join vanished
@@ -165,45 +163,6 @@ permissions:
   vanish.reload:
     default: false
     description: Reloads some VNP systems
-  vanish.effects.smoke:
-    default: false
-    description: Creates smoke effect when vanishing and re-appearing
-  vanish.effects.explode:
-    default: false
-    description: Creates explosion effect when vanishing and re-appearing
-  vanish.effects.lightning:
-    default: false
-    description: Creates a lightning barrage around a player when vanishing and re-appearing
-  vanish.effects.flames:
-    default: false
-    description: Creates a mob spawner flames effect around a player when vanishing and re-appearing
-  vanish.effects.bats:
-    default: false
-    description: Creates a swarm of bats around a player when vanishing and re-appearing
-  vanish.effects.toggle.smoke:
-    default: false
-    description: Toggle smoke on vanish toggle
-  vanish.effects.toggle.explode:
-    default: false
-    description: Toggle explode on vanish toggle
-  vanish.effects.toggle.lightning:
-    default: false
-    description: Toggle lightning on vanish toggle
-  vanish.effects.toggle.flames:
-    default: false
-    description: Toggle flames on vanish toggle
-  vanish.effects.toggle.bats:
-    default: false
-    description: Toggle bats on vanish toggle
-  vanish.effects.toggle.all:
-    default: false
-    description: Toggle all vanish toggle effects
-    children:
-      vanish.effects.toggle.smoke: true
-      vanish.effects.toggle.explode: true
-      vanish.effects.toggle.lightning: true
-      vanish.effects.toggle.flames: true
-      vanish.effects.toggle.bats: true
   vanish.op:
     default: op
     description: The permission nodes given to ops
@@ -248,9 +207,3 @@ permissions:
       vanish.permtest.all: true
       vanish.spout.status: true
       vanish.reload: true
-      vanish.effects.smoke: true
-      vanish.effects.explode: true
-      vanish.effects.lightning: true
-      vanish.effects.flames: true
-      vanish.effects.bats: true
-      vanish.effects.toggle.all: true

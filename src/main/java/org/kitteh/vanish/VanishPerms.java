@@ -17,6 +17,7 @@
  */
 package org.kitteh.vanish;
 
+import lv.sidesurvival.api.SurvivalStaffAPI;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -36,36 +37,8 @@ public final class VanishPerms {
         return VanishPerms.getUser(player).getPreventOutgoingDamage();
     }
 
-    public static boolean canEffectBats(@NonNull Player player) {
-        return VanishPerms.getUser(player).getEffectBats();
-    }
-
-    public static boolean canEffectExplode(@NonNull Player player) {
-        return VanishPerms.getUser(player).getEffectExplode();
-    }
-
-    public static boolean canEffectFlames(@NonNull Player player) {
-        return VanishPerms.getUser(player).getEffectFlames();
-    }
-
-    public static boolean canEffectLightning(@NonNull Player player) {
-        return VanishPerms.getUser(player).getEffectLightning();
-    }
-
-    public static boolean canEffectSmoke(@NonNull Player player) {
-        return VanishPerms.getUser(player).getEffectSmoke();
-    }
-
-    public static boolean canFakeAnnounce(@NonNull Player player) {
-        return player.hasPermission("vanish.fakeannounce");
-    }
-
     public static boolean canList(CommandSender sender) {
         return sender.hasPermission("vanish.list");
-    }
-
-    public static boolean canNotChat(@NonNull Player player) {
-        return VanishPerms.getUser(player).getNoChat();
     }
 
     public static boolean canNotFollow(@NonNull Player player) {
@@ -92,20 +65,12 @@ public final class VanishPerms {
         return VanishPerms.getUser(player).getReadChestsSilently();
     }
 
-    public static boolean canReceiveAdminAlerts(@NonNull Player player) {
-        return player.hasPermission("vanish.adminalerts");
-    }
-
     public static boolean canReload(CommandSender sender) {
         return sender.hasPermission("vanish.reload");
     }
 
     public static boolean canSeeAll(@NonNull Player player) {
         return VanishPerms.getUser(player).getSeeAll();
-    }
-
-    public static boolean canSeeSpoutStatus(@NonNull Player player) {
-        return player.hasPermission("vanish.spout.status");
     }
 
     public static boolean canSeeStatusUpdates(@NonNull Player player) {
@@ -118,26 +83,6 @@ public final class VanishPerms {
 
     public static boolean canToggleDamageOut(@NonNull Player player) {
         return player.hasPermission("vanish.toggle.damageout");
-    }
-
-    public static boolean canToggleEffectBats(@NonNull Player player) {
-        return player.hasPermission("vanish.effects.toggle.bats");
-    }
-
-    public static boolean canToggleEffectExplode(@NonNull Player player) {
-        return player.hasPermission("vanish.effects.toggle.explode");
-    }
-
-    public static boolean canToggleEffectFlames(@NonNull Player player) {
-        return player.hasPermission("vanish.effects.toggle.flames");
-    }
-
-    public static boolean canToggleEffectLightning(@NonNull Player player) {
-        return player.hasPermission("vanish.effects.toggle.lightning");
-    }
-
-    public static boolean canToggleNoChat(@NonNull Player player) {
-        return player.hasPermission("vanish.toggle.nochat");
     }
 
     public static boolean canToggleNoFollow(@NonNull Player player) {
@@ -164,10 +109,6 @@ public final class VanishPerms {
         return player.hasPermission("vanish.toggle.silentchests");
     }
 
-    public static boolean canToggleSmoke(@NonNull Player player) {
-        return player.hasPermission("vanish.effects.toggle.smoke");
-    }
-
     public static boolean canVanish(@NonNull Player player) {
         return player.hasPermission("vanish.vanish");
     }
@@ -181,23 +122,7 @@ public final class VanishPerms {
     }
 
     public static boolean joinVanished(@NonNull Player player) {
-        return player.hasPermission("vanish.joinvanished");
-    }
-
-    public static boolean joinWithoutAnnounce(@NonNull Player player) {
-        return player.hasPermission("vanish.joinwithoutannounce");
-    }
-
-    public static boolean permTestOther(@NonNull Player player) {
-        return player.hasPermission("vanish.permtest.other");
-    }
-
-    public static boolean permTestSelf(@NonNull Player player) {
-        return player.hasPermission("vanish.permtest.self");
-    }
-
-    public static boolean silentQuit(@NonNull Player player) {
-        return player.hasPermission("vanish.silentquit");
+        return SurvivalStaffAPI.shouldVanish(player);
     }
 
     public static boolean toggleDamageIn(@NonNull Player player) {
@@ -206,30 +131,6 @@ public final class VanishPerms {
 
     public static boolean toggleDamageOut(@NonNull Player player) {
         return VanishPerms.getUser(player).toggleOutgoingDamage();
-    }
-
-    public static boolean toggleEffectBats(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleEffectBats();
-    }
-
-    public static boolean toggleEffectExplode(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleEffectExplode();
-    }
-
-    public static boolean toggleEffectFlames(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleEffectFlames();
-    }
-
-    public static boolean toggleEffectLightning(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleEffectLightning();
-    }
-
-    public static boolean toggleEffectSmoke(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleEffectSmoke();
-    }
-
-    public static boolean toggleNoChat(@NonNull Player player) {
-        return VanishPerms.getUser(player).toggleNoChat();
     }
 
     public static boolean toggleNoFollow(@NonNull Player player) {

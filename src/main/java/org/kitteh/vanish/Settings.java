@@ -27,7 +27,6 @@ public final class Settings {
     private static String fakeJoin;
     private static boolean autoFakeJoinSilent;
     private static boolean worldChangeCheck;
-    private static int lightningEffectCount;
 
     private static final int confVersion = 8; // Tracking config version
 
@@ -45,10 +44,6 @@ public final class Settings {
 
     public static String getFakeQuit() {
         return Settings.fakeQuit;
-    }
-
-    public static int getLightningCount() {
-        return Settings.lightningEffectCount;
     }
 
     public static boolean getWorldChangeCheck() {
@@ -73,9 +68,6 @@ public final class Settings {
                 config.set("enableTabControl", null);
                 config.set("updates.check", null);
             }
-            if ((ver <= 3)) {
-                config.set("effects.lightning.count", 30);
-            }
             if (ver <= 5) {
                 config.set("hooks.JSONAPI", null);
                 config.set("hooks.spoutcraft", null);
@@ -96,10 +88,6 @@ public final class Settings {
         Settings.fakeQuit = config.getString("fakeannounce.quit", "%p left the game.").replace("&&", String.valueOf(ChatColor.COLOR_CHAR));
         Settings.autoFakeJoinSilent = config.getBoolean("fakeannounce.automaticforsilentjoin", false);
         Settings.worldChangeCheck = config.getBoolean("permissionsupdates.checkonworldchange", false);
-        Settings.lightningEffectCount = config.getInt("effects.lightning.count", 30);
-        if (Settings.lightningEffectCount < 1) {
-            Settings.lightningEffectCount = 1;
-        }
         if (config.getBoolean("debug", false)) {
             Debuggle.itsGoTime(plugin);
         } else {

@@ -16,9 +16,6 @@ hooks:
     discordsrv: false
 permissionsupdates:
     checkonworldchange: false
-effects:
-    lightning:
-        count: 30
 
 permtest: false
 debug: false
