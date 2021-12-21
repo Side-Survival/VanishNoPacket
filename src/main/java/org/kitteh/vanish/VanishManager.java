@@ -213,15 +213,15 @@ public final class VanishManager {
         if (this.isVanished(togglingPlayer)) {
             Debuggle.log("LoudVanishToggle Vanishing " + togglingPlayer.getName());
             this.plugin.hooksVanish(togglingPlayer);
-            messageBit = "vanished. Poof.";
+            messageBit = ChatColor.YELLOW + "neredzams " + ChatColor.WHITE + "(Vanish ieslēgts).";
 
         } else {
             Debuggle.log("LoudVanishToggle Revealing " + togglingPlayer.getName());
             this.plugin.hooksUnvanish(togglingPlayer);
-            messageBit = "become visible.";
+            messageBit = ChatColor.GREEN + "redzams " + ChatColor.WHITE + "(Vanish izslēgts).";
         }
         final String message = base + messageBit;
-        togglingPlayer.sendMessage(ChatColor.DARK_AQUA + "You have " + messageBit);
+        togglingPlayer.sendMessage(ChatColor.WHITE + "Tu tagad esi " + messageBit);
         this.plugin.messageStatusUpdate(message, togglingPlayer);
     }
 
@@ -265,7 +265,7 @@ public final class VanishManager {
                 vanishingPlayer.setCollidable(false);
             }
             this.vanishedPlayerNames.add(vanishingPlayerName);
-            this.plugin.getLogger().info(vanishingPlayerName + " disappeared.");
+//            this.plugin.getLogger().info(vanishingPlayerName + " disappeared.");
         } else {
             Debuggle.log("It's visible time! " + vanishingPlayer.getName());
             this.resetSleepingIgnored(vanishingPlayer);
@@ -274,7 +274,7 @@ public final class VanishManager {
             if (coll == 0x01) {
                 vanishingPlayer.setCollidable(true);
             }
-            this.plugin.getLogger().info(vanishingPlayerName + " reappeared.");
+//            this.plugin.getLogger().info(vanishingPlayerName + " reappeared.");
         }
         SurvivalStaffAPI.setVanish(vanishingPlayer, vanishing);
         this.plugin.getServer().getPluginManager().callEvent(new VanishStatusChangeEvent(vanishingPlayer, vanishing));
