@@ -222,7 +222,7 @@ public final class VanishManager {
         }
         final String message = base + messageBit;
         togglingPlayer.sendMessage(ChatColor.WHITE + "Tu tagad esi " + messageBit);
-        this.plugin.messageStatusUpdate(message, togglingPlayer);
+//        this.plugin.messageStatusUpdate(message, togglingPlayer);
     }
 
     /**

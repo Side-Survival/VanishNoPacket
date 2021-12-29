@@ -145,9 +145,9 @@ public final class ListenPlayerOther implements Listener {
     @EventHandler
     public void onPlayerQuit(@NonNull PlayerQuitEvent event) {
         final Player player = event.getPlayer();
-        if (this.plugin.getManager().isVanished(player)) {
-            this.plugin.messageStatusUpdate(ChatColor.DARK_AQUA + event.getPlayer().getName() + " has quit vanished");
-        }
+//        if (this.plugin.getManager().isVanished(player)) {
+//            this.plugin.messageStatusUpdate(ChatColor.DARK_AQUA + event.getPlayer().getName() + " has quit vanished");
+//        }
         this.plugin.getManager().playerQuit(player);
         this.plugin.hooksQuit(player);
         this.plugin.chestFakeClose(event.getPlayer().getName());
