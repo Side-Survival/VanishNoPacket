@@ -106,9 +106,9 @@ public final class VanishCommand implements CommandExecutor {
         // Check if I'm vanished
         if (goal.equalsIgnoreCase("check")) {
             if (this.plugin.getManager().isVanished(player)) {
-                player.sendMessage(ChatColor.WHITE + "Tu esi neredzams (Vanish ieslēgts).");
+                player.sendMessage(ChatColor.WHITE + "You are invisible (Vanish enabled).");
             } else {
-                player.sendMessage(ChatColor.WHITE + "Tu esi redzams (Vanish izslēgts).");
+                player.sendMessage(ChatColor.WHITE + "You are visible (Vanish disabled).");
             }
             return true;
         }
@@ -210,7 +210,7 @@ public final class VanishCommand implements CommandExecutor {
     }
 
     private void denied(@NonNull CommandSender sender) {
-        sender.sendMessage(ChatColor.RED + "Tev nav atļauts izmantot šo komandu.");
+        sender.sendMessage(ChatColor.RED + "You don't have permission to use this.");
     }
 
     private void toggle(@NonNull Player player, @NonNull String toggle) {

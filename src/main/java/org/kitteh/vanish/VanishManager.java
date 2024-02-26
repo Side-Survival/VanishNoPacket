@@ -19,11 +19,10 @@ package org.kitteh.vanish;
 
 import com.google.common.collect.ImmutableSet;
 import lv.sidesurvival.api.SurvivalStaffAPI;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -97,6 +96,12 @@ public final class VanishManager {
     private final ShowPlayerHandler showPlayer;
     private final NamespacedKey vanishCollideState;
 
+    private final static BossBar vanishBossbar = Bukkit.createBossBar(
+            ChatColor.GREEN + "You are vanished to other players!",
+            BarColor.GREEN,
+            BarStyle.SOLID
+    );
+
     public VanishManager(final @NonNull VanishPlugin plugin) {
         this.plugin = plugin;
 
@@ -163,6 +168,8 @@ public final class VanishManager {
      * @param player the player who has quit
      */
     public void playerQuit(@NonNull Player player) {
+        if (vanishBossbar.getPlayers().contains(player))
+            vanishBossbar.removePlayer(player);
         Debuggle.log("Quitting: " + player.getName());
         this.resetSleepingIgnored(player);
         VanishPerms.userQuit(player);
@@ -213,15 +220,18 @@ public final class VanishManager {
         if (this.isVanished(togglingPlayer)) {
             Debuggle.log("LoudVanishToggle Vanishing " + togglingPlayer.getName());
             this.plugin.hooksVanish(togglingPlayer);
-            messageBit = ChatColor.YELLOW + "neredzams " + ChatColor.WHITE + "(Vanish ieslēgts).";
-
+            messageBit = ChatColor.YELLOW + "invisible " + ChatColor.WHITE + "(Vanish enabled).";
+            if (!vanishBossbar.getPlayers().contains(togglingPlayer))
+                vanishBossbar.addPlayer(togglingPlayer);
         } else {
             Debuggle.log("LoudVanishToggle Revealing " + togglingPlayer.getName());
             this.plugin.hooksUnvanish(togglingPlayer);
-            messageBit = ChatColor.GREEN + "redzams " + ChatColor.WHITE + "(Vanish izslēgts).";
+            messageBit = ChatColor.GREEN + "visible " + ChatColor.WHITE + "(Vanish disabled).";
+            if (vanishBossbar.getPlayers().contains(togglingPlayer))
+                vanishBossbar.removePlayer(togglingPlayer);
         }
         final String message = base + messageBit;
-        togglingPlayer.sendMessage(ChatColor.WHITE + "Tu tagad esi " + messageBit);
+        togglingPlayer.sendMessage(ChatColor.WHITE + "You are now " + messageBit);
 //        this.plugin.messageStatusUpdate(message, togglingPlayer);
     }
 
@@ -265,6 +275,8 @@ public final class VanishManager {
                 vanishingPlayer.setCollidable(false);
             }
             this.vanishedPlayerNames.add(vanishingPlayerName);
+            if (!vanishBossbar.getPlayers().contains(vanishingPlayer))
+                vanishBossbar.addPlayer(vanishingPlayer);
 //            this.plugin.getLogger().info(vanishingPlayerName + " disappeared.");
         } else {
             Debuggle.log("It's visible time! " + vanishingPlayer.getName());
@@ -274,6 +286,8 @@ public final class VanishManager {
             if (coll == 0x01) {
                 vanishingPlayer.setCollidable(true);
             }
+            if (vanishBossbar.getPlayers().contains(vanishingPlayer))
+                vanishBossbar.removePlayer(vanishingPlayer);
 //            this.plugin.getLogger().info(vanishingPlayerName + " reappeared.");
         }
         SurvivalStaffAPI.setVanish(vanishingPlayer, vanishing);
