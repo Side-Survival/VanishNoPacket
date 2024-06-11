@@ -13,6 +13,9 @@ commands:
     description: poof
     usage: /vanish
     aliases: [v,np,nf,ni,nc,nh]
+  vanishpickup:
+    description: Vanish pickup toggle
+    aliases: [vpickup]
 permissions:
   vanish.vanish:
     default: false

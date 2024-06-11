@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package org.kitteh.vanish;
+package org.kitteh.vanish.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -23,6 +23,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.kitteh.vanish.VanishPerms;
+import org.kitteh.vanish.VanishPlugin;
 
 public final class VanishCommand implements CommandExecutor {
     private final VanishPlugin plugin;

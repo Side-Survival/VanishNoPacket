@@ -19,16 +19,15 @@ package org.kitteh.vanish;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.metadata.LazyMetadataValue;
 import org.bukkit.metadata.LazyMetadataValue.CacheStrategy;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.kitteh.vanish.command.VanishCommand;
+import org.kitteh.vanish.command.VanishPickupCommand;
 import org.kitteh.vanish.hooks.HookManager;
-import org.kitteh.vanish.hooks.HookManager.HookType;
 import org.kitteh.vanish.listeners.ListenEntity;
 import org.kitteh.vanish.listeners.ListenInventory;
 import org.kitteh.vanish.listeners.ListenPaper;
@@ -256,6 +255,7 @@ public final class VanishPlugin extends JavaPlugin implements Listener {
         }
 
         this.getCommand("vanish").setExecutor(new VanishCommand(this));
+        this.getCommand("vanishpickup").setExecutor(new VanishPickupCommand(this));
         this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new ListenEntity(this), this);
         this.getServer().getPluginManager().registerEvents(new ListenPlayerJoin(this), this);
